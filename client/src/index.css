@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #000000;
+  color: #c9d1d9;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================== */
+/* CODEWIKI-INSPIRED GLOBALS  */
+/* ========================== */
+
+/* Radial background vignette glow */
+.bg-radial-glow {
+  background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(88, 166, 255, 0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 80% 50%, rgba(188, 140, 255, 0.06) 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 20% 50%, rgba(63, 185, 80, 0.04) 0%, transparent 50%),
+              #000000;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* ========================== */
+/* ANIMATED SCORE GAUGE       */
+/* ========================== */
+
+@keyframes scoreReveal {
+  from {
+    stroke-dashoffset: 283;
+  }
+}
+
+.score-circle {
+  animation: scoreReveal 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ========================== */
+/* GLOW EFFECTS               */
+/* ========================== */
+
+.glow-green {
+  box-shadow: 0 0 30px rgba(63, 185, 80, 0.15), 0 0 60px rgba(63, 185, 80, 0.05);
+}
+.glow-yellow {
+  box-shadow: 0 0 30px rgba(210, 153, 34, 0.15), 0 0 60px rgba(210, 153, 34, 0.05);
+}
+.glow-red {
+  box-shadow: 0 0 30px rgba(248, 81, 73, 0.15), 0 0 60px rgba(248, 81, 73, 0.05);
+}
+.glow-blue {
+  box-shadow: 0 0 30px rgba(88, 166, 255, 0.15), 0 0 60px rgba(88, 166, 255, 0.05);
+}
+
+/* ========================== */
+/* GLASSMORPHISM              */
+/* ========================== */
+
+.glass-card {
+  background: rgba(22, 27, 34, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(48, 54, 61, 0.5);
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(88, 166, 255, 0.4);
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ========================== */
+/* ANIMATED GRADIENT BORDER   */
+/* ========================== */
+
+.gradient-border {
+  position: relative;
+  background: rgba(22, 27, 34, 0.8);
+  border-radius: 16px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.3), rgba(188, 140, 255, 0.2), rgba(63, 185, 80, 0.1));
+  z-index: -1;
+  animation: borderRotate 6s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { background: linear-gradient(0deg, rgba(88, 166, 255, 0.3), rgba(188, 140, 255, 0.2), transparent); }
+  33% { background: linear-gradient(120deg, rgba(188, 140, 255, 0.3), rgba(63, 185, 80, 0.2), transparent); }
+  66% { background: linear-gradient(240deg, rgba(63, 185, 80, 0.3), rgba(88, 166, 255, 0.2), transparent); }
+  100% { background: linear-gradient(360deg, rgba(88, 166, 255, 0.3), rgba(188, 140, 255, 0.2), transparent); }
+}
+
+/* ========================== */
+/* INPUT GLOW                 */
+/* ========================== */
+
+.input-glow {
+  transition: all 0.3s ease;
+}
+
+.input-glow:focus {
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3), 0 0 30px rgba(88, 166, 255, 0.1);
+  border-color: rgba(88, 166, 255, 0.6);
+}
+
+/* ========================== */
+/* TEXT GRADIENT               */
+/* ========================== */
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #58a6ff, #bc8cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #3fb950, #58a6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================== */
+/* LOADING ANIMATIONS         */
+/* ========================== */
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(88, 166, 255, 0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ========================== */
+/* FEATURE CARDS              */
+/* ========================== */
+
+.feature-card {
+  background: rgba(22, 27, 34, 0.5);
+  border: 1px solid rgba(48, 54, 61, 0.6);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  border-color: rgba(88, 166, 255, 0.3);
+  background: rgba(22, 27, 34, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(88, 166, 255, 0.05);
+}
+
+/* ========================== */
+/* SCORE BADGE                */
+/* ========================== */
+
+.score-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+}
+
+/* ========================== */
+/* PROGRESS BAR ANIMATION     */
+/* ========================== */
+
+.progress-bar-fill {
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================== */
+/* TYPING CURSOR              */
+/* ========================== */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #58a6ff;
+  margin-left: 2px;
+}
+
+/* ========================== */
+/* PARTICLE DOTS              */
+/* ========================== */
+
+.particle-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(88, 166, 255, 0.3);
+  border-radius: 50%;
+  animation: particleFloat 15s linear infinite;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
