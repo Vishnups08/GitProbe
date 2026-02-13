@@ -2,86 +2,114 @@
 
 > **Turn your GitHub profile from invisible to recruiter-ready in under 2 minutes.**
 
+[![Live Demo](https://img.shields.io/badge/🔗_Live_Demo-gitprobe08.netlify.app-58a6ff?style=for-the-badge)](https://gitprobe08.netlify.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Vishnups08/GitProbe)
+[![Built With](https://img.shields.io/badge/Built_With-React_+_Node.js-3fb950?style=for-the-badge)]()
+[![AI Powered](https://img.shields.io/badge/AI_Powered-Google_Gemini-bc8cff?style=for-the-badge)]()
 
-## 📸 Demo
+---
 
+## � Demo Video
+
+> **🎬 Watch GitProbe in action:**
+
+[![GitProbe Demo Video](https://img.shields.io/badge/▶_Watch_Demo_Video-YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+
+<!-- 
+🚨 IMPORTANT:
+Replace the link above with your actual YouTube video link! 
+-->
 
 ---
 
 ## 🎯 The Problem
 
-**87% of student GitHub profiles fail to communicate their skills to recruiters.** Developers spend hundreds of hours coding, but their GitHub profiles — often the first thing a hiring manager checks — are full of missing READMEs, empty descriptions, and inconsistent activity. They have no idea how recruiters actually perceive their work.
+For many students and early-career developers, **GitHub is their primary portfolio**. Yet most profiles silently fail to impress recruiters:
 
-**GitProbe fixes that in 30 seconds.**
+- **87% of student repos** lack proper READMEs or documentation
+- **Inconsistent commit history** raises reliability concerns
+- **No project storytelling** — recruiters can't understand the impact of your work
+- **Poor repository hygiene** — empty repos, missing descriptions, no live demos
+
+> *A strong GitHub profile opens doors. A weak one silently closes them.*
+
+**The result?** Talented developers get overlooked because their GitHub doesn't communicate their true ability.
 
 ---
 
-## ✨ Features
+## ✨ What GitProbe Does
 
-| Feature | Description |
-|---|---|
-| 📊 **Portfolio Score** | Overall score (0-100) across 6 weighted dimensions |
-| 🤖 **AI Recruiter Simulation** | See your profile through a recruiter's eyes using AI |
-| 🎯 **Actionable Recommendations** | Prioritized fixes with time estimates and impact ratings |
-| 📦 **Per-Repository Scoring** | Individual repo grades with specific improvement suggestions |
-| 📈 **Activity Visualization** | Commit pattern charts with streak detection |
-| 💻 **Language Distribution** | Visual breakdown of your tech stack |
-| 🔄 **Before & After Preview** | See what your profile looks like NOW vs. what it COULD look like |
-| 📄 **Portfolio Resume Generator** | Auto-generate a shareable portfolio summary from your GitHub data |
-| 📊 **Benchmark Comparison** | Compare your scores against developer averages |
-| 📤 **Export & Share** | Download results as PDF or share via link |
-| 💎 **Hidden Strengths** | Discover what you're doing right that you don't even realize |
-| ⚡ **Quick Wins** | Things you can fix in under 30 minutes for maximum impact |
+GitProbe analyzes any public GitHub profile **exactly like a tech recruiter would** and provides:
+
+### 📊 Objective Portfolio Score
+A weighted score across **6 recruiter-focused dimensions**, giving you a clear picture of where you stand.
+
+### 🤖 AI-Powered Recruiter Perspective
+Powered by Google Gemini / OpenRouter, GitProbe generates a **"Recruiter's First Impression"** — what a hiring manager would think within 30 seconds of viewing your profile.
+
+### 🎯 Prioritized Action Plan
+Not generic advice — **specific recommendations** referencing your actual repositories, with priority levels and time estimates.
+
+### 📦 Per-Repository Analysis
+Individual scores for each repo showing exactly what's missing — README, license, description, tests, live demo link.
+
+### 📈 Visual Analytics
+Commit activity charts and language distribution to visualize your coding patterns and tech diversity.
+
+### 🏷️ Repository Triage
+Categorizes your repos into:
+- 🌟 **Showcase** — Pin these, they're your best work
+- 🔧 **Improve** — Good projects that need polish
+- �️ **Archive** — These are hurting your profile
+
+---
+
+## 🖥️ Screenshots
+
+### Landing Page & Dashboard
+*(Add your screenshots here)*
+
+---
+
+## 📊 Scoring Methodology
+
+GitProbe evaluates profiles across **6 dimensions** with weighted scoring:
+
+| Dimension | Weight | What It Measures |
+|---|---|---|
+| � **Documentation Quality** | 20% | README presence, depth, structure, screenshots, setup instructions, licenses |
+| 🏗️ **Code Structure & Best Practices** | 18% | .gitignore, directory organization, dependency management, tests, CI/CD configs |
+| � **Activity Consistency** | 18% | Active days ratio, commit streaks, total volume, activity diversity (issues, PRs) |
+| 📁 **Repository Organization** | 15% | Descriptions, topics/tags, live demo links, meaningful vs empty repo ratio |
+| 🚀 **Project Impact & Relevance** | 15% | Stars, forks, real-world project indicators, deployed projects, community engagement |
+| ⚡ **Technical Depth** | 14% | Language diversity, project complexity, commit message quality, advanced tooling |
+
+### Score Ranges
+| Score | Label | Color | Meaning |
+|---|---|---|---|
+| 80-100 | 🟢 Excellent | Green | Recruiter-ready, impressive profile |
+| 60-79 | 🟢 Good | Light Green | Strong foundation, minor improvements needed |
+| 40-59 | 🟡 Average | Yellow | Noticeable gaps, needs focused improvement |
+| 20-39 | 🟠 Needs Work | Orange | Significant issues, recruiters may pass |
+| 0-19 | 🔴 Critical | Red | Major overhaul needed |
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-┌──────────────────────────────────────────────────────┐
-│                    FRONTEND                          │
-│              React + Vite + Tailwind                 │
-│                                                      │
-│  ┌──────────┐ ┌──────────┐ ┌──────────────────────┐ │
-│  │   Hero   │ │ Loading  │ │   Results Dashboard  │ │
-│  │  Section │ │  State   │ │  ┌────┐ ┌────┐ ┌──┐  │ │
-│  │  + Input │ │ (6 steps)│ │  │Score│ │AI  │ │📊│  │ │
-│  └──────────┘ └──────────┘ │  │Card │ │View│ │  │  │ │
-│                             │  └────┘ └────┘ └──┘  │ │
-│                             └──────────────────────┘ │
-└────────────────────┬─────────────────────────────────┘
-                     │ POST /api/analyze
-                     ▼
-┌──────────────────────────────────────────────────────┐
-│                    BACKEND                           │
-│               Node.js + Express                      │
-│                                                      │
-│  ┌─────────────┐  ┌──────────────┐  ┌────────────┐  │
-│  │   GitHub     │  │   Scoring    │  │    AI       │  │
-│  │   Service    │──│   Engine     │──│   Service   │  │
-│  │  (REST API)  │  │ (6 Dimensions│  │ (OpenRouter)│  │
-│  └─────────────┘  └──────────────┘  └────────────┘  │
-│                    ┌──────────────┐                   │
-│                    │Recommendation│                   │
-│                    │   Engine     │                   │
-│                    └──────────────┘                   │
-└──────────────────────────────────────────────────────┘
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
+│                 │     │                  │     │                 │
+│   React         │────▶│  Node.js/Express │────▶│  GitHub REST    │
+│   Frontend      │     │  Backend API     │     │  API v3         │
+│   (Netlify)     │◀────│  (Render)        │◀────│                 │
+│                 │     │                  │     └─────────────────┘
+└─────────────────┘     │                  │
+                        │                  │     ┌─────────────────┐
+                        │                  │────▶│  Google Gemini  │
+                        │                  │◀────│  AI API         │
+                        └──────────────────┘     └─────────────────┘
 ```
-
----
-
-## 📊 Scoring Methodology
-
-GitProbe evaluates profiles across **6 weighted dimensions**:
-
-| Dimension | Weight | What We Check |
-|---|---|---|
-| 📝 **Documentation** | 20% | README quality, descriptions, licenses, badges |
-| 🏗️ **Code Structure** | 18% | .gitignore, directory org, tests, config files |
-| 📊 **Activity** | 18% | Consistency, streaks, commit volume, diversity |
-| 📁 **Repo Organization** | 15% | Descriptions, topics, live demos, meaningful repos |
-| 🚀 **Project Impact** | 15% | Stars, forks, real-world projects, deployments |
-| ⚡ **Technical Depth** | 14% | Language diversity, complexity, commit messages |
 
 ---
 
@@ -89,74 +117,104 @@ GitProbe evaluates profiles across **6 weighted dimensions**:
 
 | Layer | Technology | Purpose |
 |---|---|---|
-| **Frontend** | React 19 + Vite 7 | Fast SPA with hot reload |
-| **Styling** | Tailwind CSS 3 | Utility-first, rapid UI development |
-| **Animations** | Framer Motion | Smooth entrance animations |
-| **Charts** | Recharts | Activity & language visualizations |
-| **Backend** | Node.js + Express | API server with rate limiting |
-| **AI** | OpenRouter (GPT) | Recruiter perspective analysis |
+| **Frontend** | React 18 + Vite | Fast, component-based UI |
+| **Styling** | Tailwind CSS | GitHub-themed dark mode design |
+| **Charts** | Recharts | Commit activity & language visualizations |
+| **Backend** | Node.js + Express | API orchestration & scoring logic |
+| **AI Engine** | Google Gemini API | README analysis, recruiter insights |
 | **Data Source** | GitHub REST API v3 | Profile, repos, commits, languages |
-| **Hosting** | Vercel + Render | Free-tier deployment |
+| **Frontend Hosting** | Netlify | Free, fast CDN deployment |
+| **Backend Hosting** | Render | Free tier API hosting |
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+
-- GitHub Personal Access Token ([get one here](https://github.com/settings/tokens))
-- OpenRouter API Key ([free — get one here](https://openrouter.ai/keys))
+- Node.js 18+ installed
+- GitHub Personal Access Token ([create one here](https://github.com/settings/tokens))
+- OpenRouter / Google Gemini API Key
 
-### Installation
-
+### 1. Clone the Repository
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/github-portfolio-analyzer.git
-cd github-portfolio-analyzer
-
-# Setup backend
-cd server
-npm install
-cp .env.example .env
-# Edit .env with your API keys
-npm run dev
-
-# Setup frontend (new terminal)
-cd ../client
-npm install
-npm run dev
+git clone https://github.com/Vishnups08/GitProbe.git
+cd GitProbe
 ```
 
-### Environment Variables
+### 2. Setup Backend
+```bash
+cd server
+npm install
+```
 
-Create a `server/.env` file:
-
+Create a `.env` file in the `server` directory:
 ```env
-GITHUB_TOKEN=ghp_your_personal_access_token
-OPENROUTER_API_KEY=sk-or-your_openrouter_api_key
+GITHUB_TOKEN=ghp_your_github_personal_access_token
+OPENROUTER_API_KEY=your_openrouter_api_key
 PORT=3001
 ```
 
-The app will be available at `http://localhost:5173`.
+Start the backend:
+```bash
+npm run dev
+```
+
+### 3. Setup Frontend
+```bash
+cd ../client
+npm install
+```
+
+Create a `.env` file in the `client` directory (if using deployed backend):
+```env
+VITE_API_URL=http://localhost:3001
+```
+
+Start the frontend:
+```bash
+npm run dev
+```
 
 ---
 
-## 🎬 Demo Video Script
+## 🔮 Features in Detail
 
-1. **0:00-0:30** — "87% of developer profiles fail to impress recruiters..."
-2. **0:30-1:00** — Enter a GitHub URL, hit Analyze
-3. **1:00-3:30** — Walk through the results dashboard
-4. **3:30-4:15** — Show AI insights + Before/After preview
-5. **4:15-5:00** — Export resume, share results
+### 1. Smart Profile Analysis
+- Fetches up to 100 public repositories
+- Analyzes top 15 repos in depth
+- Separates original work from forks
+
+### 2. AI-Powered Insights
+- **Recruiter's First Impression** — What a hiring manager notices in 30 seconds
+- **#1 Priority Fix** — The single most impactful improvement
+- **Project Storytelling Tips** — How to reframe projects
+- **Hidden Strengths** — Positives you might not realize
+
+### 3. Actionable Recommendations
+- **Priority level** (High / Medium / Quick Win)
+- **Specific repo names** referenced
+- **Time estimate** for implementation
 
 ---
 
-## 👥 Team
+## � Author
 
-Built with ❤️ for the hackathon.
+**Vishnu PS**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Vishnups08-181717?style=flat-square&logo=github)](https://github.com/Vishnups08)
 
 ---
 
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+**Built with ❤️ for the UnsaidTalks Hackathon**
+
+*Turning repositories into recruiter-ready proof*
+
+</div>
