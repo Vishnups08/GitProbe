@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer id="about" className="border-t border-github-border/30 mt-16">
+        <footer className="border-t border-github-border/30 mt-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex items-center gap-3">
@@ -11,10 +11,8 @@ export default function Footer() {
                         </div>
                         <span className="text-sm font-bold text-white">GitProbe</span>
                     </div>
-                    <div className="flex items-center gap-6 text-xs text-github-muted">
-                        <span>Built with ❤️ for Hackathon</span>
-                        <span>•</span>
-                        <span>Powered by GitHub API & Gemini AI</span>
+                    <div className="text-xs text-github-muted">
+                        <span>© {new Date().getFullYear()} GitProbe. All rights reserved.</span>
                     </div>
                 </div>
             </div>

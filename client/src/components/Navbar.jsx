@@ -15,7 +15,7 @@ export default function Navbar() {
 
                 <div className="flex items-center gap-6">
                     <a
-                        href="https://github.com"
+                        href="https://github.com/Vishnups08/GitProbe"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-github-border/50 text-github-muted hover:text-white hover:border-github-accent/30 text-sm transition-all"
