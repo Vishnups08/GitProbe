@@ -15,7 +15,7 @@ import AIInsights from './components/AIInsights';
 import ExportShare from './components/ExportShare';
 import BeforeAfter from './components/BeforeAfter';
 import ResumeGenerator from './components/ResumeGenerator';
-import ComparisonBenchmark from './components/ComparisonBenchmark';
+import BenchmarkComparison from './components/BenchmarkComparison';
 import ParticleBackground from './components/ParticleBackground';
 import Footer from './components/Footer';
 import RepoTriage from './components/RepoTriage';
@@ -138,7 +138,7 @@ function App() {
             <BeforeAfter data={result} />
 
             {/* Comparison Benchmark */}
-            <ComparisonBenchmark dimensions={result.dimensions} />
+            <BenchmarkComparison dimensions={result.dimensions} />
 
             {/* Portfolio Resume Generator */}
             <ResumeGenerator data={result} />
