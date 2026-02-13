@@ -1,32 +1,54 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
-const COLORS = ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff', '#f778ba', '#79c0ff', '#56d364', '#e3b341', '#ff7b72'];
+export default function LanguageChart({ data = {} }) {
+    const COLORS = ['#58a6ff', '#3fb950', '#d29922', '#f85149', '#bc8cff', '#f778ba', '#79c0ff', '#56d364'];
 
-export default function LanguageChart({ data }) {
+    // Check for empty data
     if (!data || Object.keys(data).length === 0) {
         return (
-            <div className="glass-card rounded-xl p-6 flex flex-col items-center justify-center h-full min-h-[300px]">
-                <p className="text-github-muted mt-2">No language data available.</p>
+            <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-6 h-[250px] flex items-center justify-center">
+                <p className="text-[#8b949e]">No language data available.</p>
             </div>
         );
     }
 
-    const totalBytes = Object.values(data).reduce((a, b) => a + b, 0);
-    const chartData = Object.entries(data)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 6)
-        .map(([name, value]) => ({
-            name,
-            value,
-            percentage: ((value / totalBytes) * 100).toFixed(1)
-        }));
+    // Preprocessing
+    const entries = Object.entries(data);
+    const totalBytes = entries.reduce((sum, [, bytes]) => sum + bytes, 0);
+
+    // Sort descending
+    const sortedEntries = entries.sort((a, b) => b[1] - a[1]);
+
+    // Take top 7 and group others
+    let chartData = [];
+    if (sortedEntries.length > 7) {
+        const top7 = sortedEntries.slice(0, 7);
+        const others = sortedEntries.slice(7);
+        const otherBytes = others.reduce((sum, [, bytes]) => sum + bytes, 0);
+
+        chartData = [
+            ...top7.map(([name, value]) => ({ name, value })),
+            { name: 'Other', value: otherBytes }
+        ];
+    } else {
+        chartData = sortedEntries.map(([name, value]) => ({ name, value }));
+    }
+
+    // Calculate percentages
+    chartData = chartData.map(item => ({
+        ...item,
+        percentage: ((item.value / totalBytes) * 100).toFixed(1)
+    }));
 
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
+            const data = payload[0].payload;
             return (
-                <div className="bg-github-card border border-github-border rounded-lg p-3 shadow-xl z-50">
-                    <p className="text-white font-bold text-sm mb-1">{payload[0].name}</p>
-                    <p className="text-github-accent text-sm font-mono">{payload[0].payload.percentage}%</p>
+                <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-3 shadow-xl z-50">
+                    <p className="text-white font-semibold text-sm mb-0.5">{data.name}</p>
+                    <p style={{ color: payload[0].fill }} className="text-xs font-mono">
+                        {data.percentage}%
+                    </p>
                 </div>
             );
         }
@@ -34,32 +56,24 @@ export default function LanguageChart({ data }) {
     };
 
     return (
-        <div className="glass-card rounded-xl p-6 relative overflow-hidden group hover:border-github-green/30 transition-colors duration-300">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                <svg className="w-24 h-24 text-github-green" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
-            </div>
-
-            <h3 className="text-base font-bold text-white mb-6 flex items-center gap-2.5 z-10 relative">
-                <span className="w-8 h-8 bg-github-green/10 rounded-lg flex items-center justify-center text-github-green text-sm">💻</span>
-                <div>
-                    Language Distribution
-                    <p className="text-xs text-github-muted font-normal mt-0.5">Top technologies used</p>
-                </div>
+        <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-6 animate-fade-in group hover:border-[#3fb950]/30 transition-colors duration-500 h-full">
+            <h3 className="text-white text-lg font-semibold flex items-center gap-2 mb-6">
+                💻 Language Distribution
             </h3>
 
-            <div className="flex flex-col sm:flex-row items-center gap-8 relative z-10">
-                <div className="h-48 w-48 flex-shrink-0 relative">
+            <div className="flex flex-col sm:flex-row items-center gap-8">
+                {/* Donut Chart Section */}
+                <div className="relative w-[180px] h-[180px] flex-shrink-0">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
                                 data={chartData}
                                 cx="50%"
                                 cy="50%"
-                                innerRadius={50}
-                                outerRadius={80}
-                                paddingAngle={4}
+                                innerRadius={45}
+                                outerRadius={75}
+                                paddingAngle={3}
                                 dataKey="value"
-                                animationDuration={1000}
                                 stroke="none"
                             >
                                 {chartData.map((entry, index) => (
@@ -69,23 +83,32 @@ export default function LanguageChart({ data }) {
                             <Tooltip content={<CustomTooltip />} />
                         </PieChart>
                     </ResponsiveContainer>
+
                     {/* Center Text */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <span className="text-lg font-bold text-white">{Object.keys(data).length}</span>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                        <span className="text-2xl font-bold text-white leading-none">
+                            {sortedEntries.length}
+                        </span>
+                        <span className="text-[10px] text-[#8b949e] uppercase mt-1 tracking-wide">
+                            Languages
+                        </span>
                     </div>
                 </div>
 
-                <div className="flex-1 grid grid-cols-2 gap-x-4 gap-y-3 w-full">
+                {/* Legend Section */}
+                <div className="flex-1 w-full grid grid-cols-1 gap-2.5">
                     {chartData.map((lang, i) => (
-                        <div key={lang.name} className="flex items-center justify-between group cursor-default">
-                            <div className="flex items-center gap-2 overflow-hidden">
+                        <div key={lang.name} className="flex items-center justify-between group/row">
+                            <div className="flex items-center gap-3">
                                 <span
-                                    className="w-2.5 h-2.5 rounded-full flex-shrink-0 transition-transform group-hover:scale-125"
+                                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                                     style={{ backgroundColor: COLORS[i % COLORS.length] }}
                                 />
-                                <span className="text-sm text-github-text group-hover:text-white truncate transition-colors">{lang.name}</span>
+                                <span className="text-sm text-[#c9d1d9] font-medium truncate max-w-[120px]">
+                                    {lang.name}
+                                </span>
                             </div>
-                            <span className="text-xs font-mono text-github-muted group-hover:text-github-accent transition-colors">
+                            <span className="text-sm text-[#8b949e] font-mono group-hover/row:text-white transition-colors">
                                 {lang.percentage}%
                             </span>
                         </div>
