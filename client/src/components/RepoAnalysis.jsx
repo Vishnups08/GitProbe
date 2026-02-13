@@ -1,81 +1,126 @@
 import { motion } from 'framer-motion';
 
-export default function RepoAnalysis({ repos }) {
+export default function RepoAnalysis({ repos = [] }) {
+    // Sort by score descending and take top 10
+    const sortedRepos = [...repos]
+        .sort((a, b) => (b.score || 0) - (a.score || 0))
+        .slice(0, 10);
+
+    const getScoreStyle = (score) => {
+        if (score >= 70) return 'bg-[#3fb950]/10 border-[#3fb950]/20 text-[#3fb950]';
+        if (score >= 40) return 'bg-[#d29922]/10 border-[#d29922]/20 text-[#d29922]';
+        return 'bg-[#f85149]/10 border-[#f85149]/20 text-[#f85149]';
+    };
+
     return (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-card rounded-xl overflow-hidden">
-            <div className="p-6 border-b border-github-border/30 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                    <span className="w-8 h-8 bg-github-accent/10 rounded-lg flex items-center justify-center text-sm">📦</span>
-                    <div>
-                        <h3 className="text-base font-bold text-white">Repository Health Check</h3>
-                        <p className="text-github-muted text-xs">Individual assessment of your repositories</p>
+        <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-6 animate-fade-in shadow-xl">
+            <div className="mb-6">
+                <h3 className="text-white text-lg font-semibold flex items-center gap-2">
+                    📦 Repository Analysis
+                </h3>
+                <p className="text-[#8b949e] text-sm mt-1">
+                    Individual assessment of your top repositories
+                </p>
+            </div>
+
+            <div className="space-y-3">
+                {sortedRepos.length === 0 ? (
+                    <div className="text-center py-8 text-[#8b949e] italic">
+                        No repositories found to analyze.
                     </div>
-                </div>
-            </div>
+                ) : (
+                    sortedRepos.map((repo, index) => {
+                        const score = repo.score || 0;
+                        const scoreStyle = getScoreStyle(score);
 
-            <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="text-xs text-github-muted uppercase tracking-wider border-b border-github-border/20">
-                            <th className="px-6 py-3 font-semibold w-1/3">Repository</th>
-                            <th className="px-6 py-3 font-semibold">Checks</th>
-                            <th className="px-6 py-3 font-semibold text-right">Score</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-github-border/10 text-sm">
-                        {repos.map((repo) => {
-                            const scoreColor = repo.score >= 80 ? 'text-github-green' : repo.score >= 60 ? 'text-green-400' : repo.score >= 40 ? 'text-github-yellow' : 'text-github-red';
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.05 }}
+                                whileHover={{ y: -2, borderColor: 'rgba(88, 166, 255, 0.3)' }}
+                                className="bg-[#0d1117]/50 border border-[#30363d] rounded-lg p-5 transition-all duration-300 group"
+                            >
+                                {/* Header Row: Name & Score */}
+                                <div className="flex justify-between items-start mb-2">
+                                    <a
+                                        href={repo.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[#58a6ff] hover:underline font-semibold text-[15px] truncate max-w-[70%]"
+                                    >
+                                        {repo.name}
+                                    </a>
+                                    <div className={`px-2.5 py-1 rounded-full text-xs font-bold border ${scoreStyle}`}>
+                                        {score}/100
+                                    </div>
+                                </div>
 
-                            return (
-                                <tr key={repo.name} className="hover:bg-white/[0.02] transition-colors group">
-                                    <td className="px-6 py-4">
-                                        <div className="flex items-start gap-3">
-                                            <div className="mt-0.5">
-                                                <svg className="w-4 h-4 text-github-muted group-hover:text-github-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
-                                            </div>
-                                            <div>
-                                                <a href={repo.url} target="_blank" rel="noopener noreferrer" className="font-bold text-github-text hover:text-github-accent hover:underline transition-colors block">
-                                                    {repo.name}
-                                                </a>
-                                                {repo.description && <p className="text-xs text-github-muted mt-1 max-w-xs truncate" title={repo.description}>{repo.description}</p>}
-                                                <div className="flex items-center gap-2 mt-1.5">
-                                                    {repo.language && (
-                                                        <span className="flex items-center gap-1 text-[10px] text-github-muted/80 bg-github-border/20 px-1.5 py-0.5 rounded">
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-github-accent"></span>
-                                                            {repo.language}
-                                                        </span>
-                                                    )}
-                                                    <span className="flex items-center gap-1 text-[10px] text-github-muted/80">
-                                                        ⭐ {repo.stars}
-                                                    </span>
-                                                </div>
-                                            </div>
+                                {/* Description */}
+                                <p className={`text-sm mb-4 line-clamp-2 ${!repo.description ? 'italic text-[#f85149]/70' : 'text-[#8b949e]'}`}>
+                                    {repo.description || "No description provided"}
+                                </p>
+
+                                {/* Metadata Tags */}
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#8b949e]">
+                                    {/* Language */}
+                                    {repo.language && (
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="w-2 h-2 rounded-full bg-[#58a6ff]"></span>
+                                            <span>{repo.language}</span>
                                         </div>
-                                    </td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex flex-wrap gap-2 text-[10px] font-medium tracking-wide">
-                                            <span className={`px-2 py-0.5 rounded border ${repo.hasReadme ? 'bg-github-green/10 text-github-green border-github-green/20' : 'bg-github-red/10 text-github-red border-github-red/20 opacity-60'}`}>
-                                                {repo.hasReadme ? '✓ README' : '✗ README'}
-                                            </span>
-                                            <span className={`px-2 py-0.5 rounded border ${repo.hasLicense ? 'bg-github-green/10 text-github-green border-github-green/20' : 'bg-github-muted/10 text-github-muted border-github-border/20 opacity-60'}`}>
-                                                {repo.hasLicense ? '✓ License' : '✗ License'}
-                                            </span>
-                                            <span className={`px-2 py-0.5 rounded border ${repo.hasLiveDemo ? 'bg-github-accent/10 text-github-accent border-github-accent/20' : 'bg-github-muted/10 text-github-muted border-github-border/20 opacity-40'}`}>
-                                                {repo.hasLiveDemo ? '✓ Demo' : '— Demo'}
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 py-4 text-right">
-                                        <span className={`text-xl font-black font-mono ${scoreColor}`}>
-                                            {repo.score}
+                                    )}
+
+                                    {/* Stats */}
+                                    <div className="flex items-center gap-1">
+                                        <span>⭐ {repo.stars}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <span>🍴 {repo.forks}</span>
+                                    </div>
+
+                                    {/* Flags */}
+                                    <span className={repo.hasReadme ? 'text-[#3fb950]' : 'text-[#f85149]'}>
+                                        {repo.hasReadme ? '📝 README' : '❌ No README'}
+                                    </span>
+
+                                    {repo.hasLicense && (
+                                        <span className="text-[#3fb950]/80">📜 License</span>
+                                    )}
+
+                                    {repo.hasGitignore && (
+                                        <span className="text-[#8b949e]">🔒 .gitignore</span>
+                                    )}
+
+                                    {repo.hasTests && (
+                                        <span className="text-[#3fb950]/80">🧪 Tests</span>
+                                    )}
+
+                                    {repo.hasDemo && (
+                                        <span className="flex items-center gap-1 text-[#3fb950] font-medium bg-[#3fb950]/10 px-1.5 py-0.5 rounded border border-[#3fb950]/20">
+                                            🔗 Live Demo
                                         </span>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                    )}
+
+                                    {/* Update Date */}
+                                    <span className="text-[#8b949e]/60 ml-auto">
+                                        Updated {new Date(repo.lastUpdated).toLocaleDateString()}
+                                    </span>
+                                </div>
+                            </motion.div>
+                        );
+                    })
+                )}
             </div>
-        </motion.div>
+
+            {repos.length > 10 && (
+                <div className="mt-4 text-center">
+                    <p className="text-xs text-[#8b949e]">
+                        Showing top 10 of {repos.length} repositories
+                    </p>
+                </div>
+            )}
+        </div>
     );
 }
