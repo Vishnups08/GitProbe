@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import ScoreGauge from './ScoreGauge';
 
 export default function ScoreCard({ data }) {
     const getScoreAttributes = (score) => {
@@ -71,28 +70,8 @@ export default function ScoreCard({ data }) {
                 </div>
 
                 {/* Score Gauge */}
-                <div className="w-40 h-40 md:w-48 md:h-48 flex-shrink-0 relative group-hover:scale-105 transition-transform duration-500">
-                    <CircularProgressbarWithChildren
-                        value={data.overallScore}
-                        maxValue={100}
-                        strokeWidth={8}
-                        styles={buildStyles({
-                            pathColor: styles.color,
-                            trailColor: styles.trail,
-                            strokeLinecap: 'round',
-                            pathTransitionDuration: 1.5,
-                        })}
-                    >
-                        <div className="flex flex-col items-center justify-center text-center">
-                            <span className={`text-5xl font-black ${styles.text} filter drop-shadow-lg`}>
-                                {data.overallScore}
-                            </span>
-                            <span className="text-[10px] text-github-muted uppercase tracking-widest font-semibold mt-1">Overall</span>
-                            <div className={`mt-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${styles.text} bg-white/5 border border-white/10 uppercase tracking-widest`}>
-                                {styles.label}
-                            </div>
-                        </div>
-                    </CircularProgressbarWithChildren>
+                <div className="flex-shrink-0 relative group-hover:scale-105 transition-transform duration-500">
+                    <ScoreGauge score={data.overallScore} />
                 </div>
             </div>
         </motion.div>
