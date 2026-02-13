@@ -5,9 +5,6 @@
 
 ## 📸 Demo
 
-https://github.com/user-attachments/assets/demo-video-placeholder
-
-> *Replace with actual demo video/GIF after recording*
 
 ---
 
