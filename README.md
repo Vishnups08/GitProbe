@@ -5,19 +5,20 @@
 [![Live Demo](https://img.shields.io/badge/🔗_Live_Demo-gitprobe08.netlify.app-58a6ff?style=for-the-badge)](https://gitprobe08.netlify.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Vishnups08/GitProbe)
 [![Built With](https://img.shields.io/badge/Built_With-React_+_Node.js-3fb950?style=for-the-badge)]()
-[![AI Powered](https://img.shields.io/badge/AI_Powered-Google_Gemini-bc8cff?style=for-the-badge)]()
+[![AI Powered](https://img.shields.io/badge/AI_Powered-ChatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)]()
 
 ---
 
-## � Demo Video
+## 📹 Demo Video
 
 > **🎬 Watch GitProbe in action:**
 
-[![GitProbe Demo Video](https://img.shields.io/badge/▶_Watch_Demo_Video-YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+[Insert your demo video here]
 
-<!-- 
-🚨 IMPORTANT:
-Replace the link above with your actual YouTube video link! 
+<!--
+INSTRUCTIONS:
+1. Drag and drop your video file here (GitHub will upload it)
+2. Or paste your Loom/YouTube link
 -->
 
 ---
