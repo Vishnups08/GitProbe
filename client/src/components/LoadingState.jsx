@@ -1,78 +1,98 @@
-import { motion } from 'framer-motion';
+import React from 'react';
 
-const STEPS = [
-    { text: 'Connecting to GitHub API...', icon: '🔗' },
-    { text: 'Fetching profile data...', icon: '👤' },
-    { text: 'Analyzing 30+ repositories...', icon: '📦' },
-    { text: 'Scanning commit history...', icon: '📊' },
-    { text: 'Generating AI insights...', icon: '🧠' },
-    { text: 'Calculating final score...', icon: '✨' }
-];
+export default function LoadingState({ step: currentStep, stepIndex = 0 }) {
 
-export default function LoadingState({ step, stepIndex }) {
+    // Define the specific visual steps requested
+    const visualSteps = [
+        "Fetching GitHub profile",
+        "Loading repositories",
+        "Analyzing code structure",
+        "Checking commit patterns",
+        "Generating insights"
+    ];
+
+    // Determine specific status per step based on stepIndex
+    const getStepStatus = (index) => {
+        if (index < stepIndex) return 'completed';
+        if (index === stepIndex) return 'current';
+        return 'pending';
+    };
+
     return (
-        <div className="flex flex-col items-center justify-center py-20 px-4 min-h-[60vh]">
-            {/* Main Scanner Animation */}
-            <div className="relative mb-12">
-                <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    className="w-32 h-32 rounded-full border-t-2 border-r-2 border-github-accent/50 border-b-2 border-l-2 border-transparent"
-                />
-                <motion.div
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 m-auto w-24 h-24 rounded-full border-t-2 border-l-2 border-github-purple/50 border-b-2 border-r-2 border-transparent"
-                />
-                <div className="absolute inset-0 m-auto w-16 h-16 bg-github-card rounded-full flex items-center justify-center border border-github-border/30 shadow-lg shadow-github-accent/20">
-                    <svg className="w-8 h-8 text-white animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        <div className="flex flex-col items-center justify-center py-32 w-full relative overflow-hidden">
+            {/* Background Effect */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#58a6ff]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            {/* 1. Animated Spinner */}
+            <div className="relative w-20 h-20 mb-6">
+                {/* Outer Ring */}
+                <div className="absolute inset-0 border-4 border-[#30363d] rounded-full"></div>
+                {/* Spinning Top Segment */}
+                <div className="absolute inset-0 border-4 border-transparent border-t-[#58a6ff] rounded-full animate-spin"></div>
+                {/* Octocat Icon (Center) */}
+                <div className="absolute inset-0 flex items-center justify-center text-[#58a6ff]">
+                    <svg height="32" viewBox="0 0 16 16" width="32" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
                     </svg>
                 </div>
             </div>
 
-            <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-2xl font-bold text-white mb-2 tracking-tight"
-            >
-                Analyzing Profile...
-            </motion.h2>
+            {/* 2. Main Text */}
+            <h2 className="text-white text-2xl font-semibold mb-2">Analyzing Profile</h2>
 
-            <p className="text-github-muted text-sm mb-10 h-6">
-                This usually takes about 10-15 seconds
+            {/* 3. Current Step Text */}
+            <p className="text-[#58a6ff] text-sm font-mono animate-pulse mb-6">
+                {currentStep || "Processing..."}
             </p>
 
-            {/* Steps */}
-            <div className="w-full max-w-sm space-y-3">
-                {STEPS.map((s, i) => {
-                    const isComplete = i < stepIndex;
-                    const isCurrent = i === stepIndex;
+            {/* 4. Bouncing Dots */}
+            <div className="flex gap-2 mb-8">
+                {[0, 1, 2, 3, 4].map((i) => (
+                    <div
+                        key={i}
+                        className="w-2 h-2 bg-[#58a6ff] rounded-full animate-bounce"
+                        style={{ animationDelay: `${i * 0.15}s`, animationDuration: '0.6s' }}
+                    ></div>
+                ))}
+            </div>
+
+            {/* 5. Progress Steps List */}
+            <div className="flex flex-col gap-3 w-64">
+                {visualSteps.map((stepLabel, index) => {
+                    const status = getStepStatus(index);
 
                     return (
-                        <div key={i} className="flex items-center gap-4 group">
-                            <div className="relative flex items-center justify-center w-6 h-6">
-                                {isComplete ? (
-                                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-github-green">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                    </motion.div>
-                                ) : isCurrent ? (
-                                    <div className="w-4 h-4 rounded-full border-2 border-github-accent border-t-transparent animate-spin" />
-                                ) : (
-                                    <div className="w-2 h-2 rounded-full bg-github-border/30" />
+                        <div key={index} className="flex items-center gap-3 transition-opacity duration-300">
+                            <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                                {status === 'completed' && (
+                                    <span className="text-[#3fb950] text-sm">✅</span>
+                                )}
+                                {status === 'current' && (
+                                    <div className="w-4 h-4 border-2 border-[#58a6ff]/30 border-t-[#58a6ff] rounded-full animate-spin"></div>
+                                )}
+                                {status === 'pending' && (
+                                    <span className="text-[#8b949e] text-xs">⏳</span>
                                 )}
                             </div>
 
-                            <span className={`text-sm transition-colors duration-300 ${isComplete ? 'text-github-text/60 line-through decoration-github-border/50' :
-                                    isCurrent ? 'text-white font-medium scale-105 origin-left' :
-                                        'text-github-muted/40'
+                            <span className={`text-sm font-medium ${status === 'completed' ? 'text-[#3fb950]' :
+                                    status === 'current' ? 'text-[#58a6ff]' :
+                                        'text-[#8b949e]'
                                 }`}>
-                                {s.text}
+                                {stepLabel}
                             </span>
                         </div>
                     );
                 })}
             </div>
+
+            {/* CSS styles that might not be in Tailwind default config */}
+            <style jsx>{`
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            `}</style>
         </div>
     );
 }
