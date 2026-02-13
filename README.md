@@ -12,8 +12,8 @@
 ## 📹 Demo Video
 
 > **🎬 Watch GitProbe in action:**
+
 https://github.com/user-attachments/assets/17bf2b19-253b-4198-8484-f4ee0d23b0c4
----
 
 ## 🎯 The Problem
 
