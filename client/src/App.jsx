@@ -18,6 +18,7 @@ import ResumeGenerator from './components/ResumeGenerator';
 import ComparisonBenchmark from './components/ComparisonBenchmark';
 import ParticleBackground from './components/ParticleBackground';
 import Footer from './components/Footer';
+import RepoTriage from './components/RepoTriage';
 
 const API_URL = import.meta.env.VITE_API_URL || '';
 
@@ -123,6 +124,9 @@ function App() {
 
             {/* AI Insights */}
             {result.aiInsights && <AIInsights insights={result.aiInsights} />}
+
+            {/* Repository Triage */}
+            <RepoTriage repos={result.repoAnalysis} />
 
             {/* Repository Analysis */}
             <RepoAnalysis repos={result.repoAnalysis} />
