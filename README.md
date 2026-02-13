@@ -12,15 +12,7 @@
 ## 📹 Demo Video
 
 > **🎬 Watch GitProbe in action:**
-
-[Insert your demo video here]
-
-<!--
-INSTRUCTIONS:
-1. Drag and drop your video file here (GitHub will upload it)
-2. Or paste your Loom/YouTube link
--->
-
+Uploading demo.mp4…
 ---
 
 ## 🎯 The Problem
@@ -212,10 +204,3 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ---
 
-<div align="center">
-
-**Built with ❤️ for the UnsaidTalks Hackathon**
-
-*Turning repositories into recruiter-ready proof*
-
-</div>
