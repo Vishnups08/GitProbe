@@ -15,6 +15,8 @@
 
 https://github.com/user-attachments/assets/17bf2b19-253b-4198-8484-f4ee0d23b0c4
 
+---
+
 ## 🎯 The Problem
 
 For many students and early-career developers, **GitHub is their primary portfolio**. Yet most profiles silently fail to impress recruiters:
@@ -53,7 +55,7 @@ Commit activity charts and language distribution to visualize your coding patter
 Categorizes your repos into:
 - 🌟 **Showcase** — Pin these, they're your best work
 - 🔧 **Improve** — Good projects that need polish
-- �️ **Archive** — These are hurting your profile
+- 🗑️ **Archive** — These are hurting your profile
 
 ---
 
@@ -62,15 +64,17 @@ Categorizes your repos into:
 ### Landing Page
 <img width="1919" height="877" alt="Screenshot 2026-02-13 233120" src="https://github.com/user-attachments/assets/ef9fd5ef-ad0f-41f2-bd1a-730cf25937f1" />
 
+---
+
 ## 📊 Scoring Methodology
 
 GitProbe evaluates profiles across **6 dimensions** with weighted scoring:
 
 | Dimension | Weight | What It Measures |
 |---|---|---|
-| � **Documentation Quality** | 20% | README presence, depth, structure, screenshots, setup instructions, licenses |
+| 📝 **Documentation Quality** | 20% | README presence, depth, structure, screenshots, setup instructions, licenses |
 | 🏗️ **Code Structure & Best Practices** | 18% | .gitignore, directory organization, dependency management, tests, CI/CD configs |
-| � **Activity Consistency** | 18% | Active days ratio, commit streaks, total volume, activity diversity (issues, PRs) |
+| 📊 **Activity Consistency** | 18% | Active days ratio, commit streaks, total volume, activity diversity (issues, PRs) |
 | 📁 **Repository Organization** | 15% | Descriptions, topics/tags, live demo links, meaningful vs empty repo ratio |
 | 🚀 **Project Impact & Relevance** | 15% | Stars, forks, real-world project indicators, deployed projects, community engagement |
 | ⚡ **Technical Depth** | 14% | Language diversity, project complexity, commit message quality, advanced tooling |
@@ -112,7 +116,7 @@ GitProbe evaluates profiles across **6 dimensions** with weighted scoring:
 | **Styling** | Tailwind CSS | GitHub-themed dark mode design |
 | **Charts** | Recharts | Commit activity & language visualizations |
 | **Backend** | Node.js + Express | API orchestration & scoring logic |
-| **AI Engine** | Google Gemini API | README analysis, recruiter insights |
+| **AI Engine** | Google Gemini API / OpenAI | README analysis, recruiter insights |
 | **Data Source** | GitHub REST API v3 | Profile, repos, commits, languages |
 | **Frontend Hosting** | Netlify | Free, fast CDN deployment |
 | **Backend Hosting** | Render | Free tier API hosting |
@@ -188,7 +192,7 @@ npm run dev
 
 ---
 
-## � Author
+## 👤 Author
 
 **Vishnu PS**
 
@@ -202,3 +206,10 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ---
 
+<div align="center">
+
+**Built with ❤️ for the UnsaidTalks Hackathon**
+
+*Turning repositories into recruiter-ready proof*
+
+</div>

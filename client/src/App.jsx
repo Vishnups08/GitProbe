@@ -45,16 +45,24 @@ function App() {
 
     let stepIndex = 0;
     setLoadingStep(steps[0]);
+
+    // Start the animation
     const stepInterval = setInterval(() => {
       stepIndex++;
       if (stepIndex < steps.length) {
         setLoadingStep(steps[stepIndex]);
         setLoadingStepIndex(stepIndex);
       }
-    }, 2500);
+    }, 800); // Faster updates to ensure user sees progress
 
     try {
       const response = await axios.post(`${API_URL}/api/analyze`, { githubUrl });
+
+      // Ensure specific delays so animation can be seen
+      if (stepIndex < steps.length) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+
       setResult(response.data);
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to analyze profile. Please try again.');
