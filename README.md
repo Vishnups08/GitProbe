@@ -203,13 +203,3 @@ npm run dev
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-
-**Built with ❤️ for the UnsaidTalks Hackathon**
-
-*Turning repositories into recruiter-ready proof*
-
-</div>
