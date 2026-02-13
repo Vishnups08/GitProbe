@@ -59,10 +59,8 @@ Categorizes your repos into:
 
 ## 🖥️ Screenshots
 
-### Landing Page & Dashboard
-*(Add your screenshots here)*
-
----
+### Landing Page
+<img width="1919" height="877" alt="Screenshot 2026-02-13 233120" src="https://github.com/user-attachments/assets/ef9fd5ef-ad0f-41f2-bd1a-730cf25937f1" />
 
 ## 📊 Scoring Methodology
 
