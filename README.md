@@ -13,7 +13,7 @@
 
 > **🎬 Watch GitProbe in action — Full walkthrough:**
 
-https://github.com/user-attachments/assets/17bf2b19-253b-4198-8484-f4ee0d23b0c4
+https://github.com/user-attachments/assets/a7ef09a7-5203-4f46-979b-8236da9c289f
 
 ---
 
